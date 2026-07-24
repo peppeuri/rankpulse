@@ -3,7 +3,7 @@ import Preloader from './components/Preloader'
 import CustomCursor from './components/CustomCursor'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import { InfiniteMarquee } from './components/Marquee'
+import Marquee from './components/Marquee'
 import FeatureBlocks from './components/FeatureBlocks'
 import InteractiveDemo from './components/InteractiveDemo'
 import SocialProof from './components/SocialProof'
@@ -27,11 +27,24 @@ export default function App() {
         <Navbar />
         <Hero />
 
-        <InfiniteMarquee words={MARQUEE_1} speed={35} className="border-y border-slate-800/40" />
+        <Marquee
+          words={MARQUEE_1}
+          bgColor="bg-indigo-950/60"
+          textColor="text-indigo-400/40"
+          speed={30}
+          className="border-y border-indigo-500/10"
+        />
 
         <FeatureBlocks />
 
-        <InfiniteMarquee words={MARQUEE_2} speed={40} reverse className="border-y border-slate-800/40" />
+        <Marquee
+          words={MARQUEE_2}
+          reverse
+          bgColor="bg-cyan-950/40"
+          textColor="text-cyan-400/30"
+          speed={35}
+          className="border-y border-cyan-500/10"
+        />
 
         <InteractiveDemo />
         <SocialProof />

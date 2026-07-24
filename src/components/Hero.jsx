@@ -1,166 +1,89 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
-import { Rocket, ArrowRight, Search } from 'lucide-react'
 
 export default function Hero() {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1])
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden hero-grid noise">
-      {/* Glow orbs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[20%] left-[10%] w-[500px] h-[500px] bg-indigo-500/15 rounded-full blur-[120px] animate-float" />
-        <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] bg-cyan-500/12 rounded-full blur-[120px] animate-float" style={{ animationDelay: '-3s' }} />
-        <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-violet-500/10 rounded-full blur-[100px]" />
-      </div>
+    <section ref={ref} className="relative min-h-screen flex items-end overflow-hidden">
+      {/* Background image / gradient */}
+      <motion.div
+        style={{ scale }}
+        className="absolute inset-0"
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900" />
+        <div className="absolute inset-0 hero-grid opacity-60" />
+        <div className="absolute top-[10%] right-[5%] w-[600px] h-[600px] bg-indigo-500/15 rounded-full blur-[150px]" />
+        <div className="absolute bottom-[10%] left-[10%] w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px]" />
+        <div className="absolute top-[40%] left-[40%] w-[400px] h-[400px] bg-violet-500/10 rounded-full blur-[100px]" />
+      </motion.div>
 
-      <motion.div style={{ y, opacity }} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left — Text */}
+      {/* Dark gradient overlay at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-dark-900 to-transparent z-10" />
+
+      <motion.div style={{ y, opacity }} className="relative z-20 w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 pb-16 pt-32">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10">
+          {/* Left — massive text */}
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-indigo-400 mb-8"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-indigo-400 mb-8">
-                <Rocket className="w-4 h-4" />
-                <span>Trusted by 2,000+ SEO professionals</span>
-              </div>
-            </motion.div>
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              Trusted by 2,000+ SEO professionals
+            </motion.span>
 
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9] mb-8"
+              transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="text-[clamp(3rem,10vw,9rem)] font-black tracking-[-0.04em] leading-[0.85]"
             >
-              <span className="text-white block">Track</span>
-              <span className="text-white block">Every</span>
-              <span className="bg-gradient-to-r from-indigo-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent animate-gradient block">
+              <span className="block text-white">Track</span>
+              <span className="block text-white">Every</span>
+              <span className="block bg-gradient-to-r from-indigo-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
                 Rank.
               </span>
             </motion.h1>
+          </div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="text-lg md:text-xl text-slate-400 max-w-lg mb-10 leading-relaxed"
-            >
-              The most powerful rank tracking platform for SEO professionals.
-              Monitor keyword positions, analyze competitors, and grow your organic traffic.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4"
-            >
-              <a
-                href="#cta"
-                className="btn-shape inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-500 to-cyan-500 text-white font-bold text-lg hover:shadow-xl hover:shadow-indigo-500/30 transition-all"
-              >
-                Start Free Trial
-                <ArrowRight className="w-5 h-5" />
+          {/* Right — CTA area */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex flex-col gap-4 md:pb-4"
+          >
+            <p className="text-lg md:text-xl text-slate-400 max-w-md leading-relaxed">
+              The most powerful rank tracking platform for SEO professionals. Monitor keyword positions, analyze competitors, and grow your organic traffic.
+            </p>
+            <div className="flex flex-wrap gap-4 mt-2">
+              <a href="#cta" className="btn-shape">
+                <span className="relative z-10 flex items-center gap-2">
+                  Start Free Trial
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
+                <svg className="shape-overlay" viewBox="0 0 200 60" preserveAspectRatio="none">
+                  <ellipse cx="100" cy="30" rx="120" ry="40" fill="#06B6D4" opacity="0.3" />
+                </svg>
               </a>
-              <a
-                href="#demo"
-                className="btn-shape inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl glass text-white font-bold text-lg hover:bg-slate-700/50 transition-all"
-              >
+              <a href="#demo" className="btn-outline">
                 See How It Works
               </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7 }}
-              className="mt-10 flex flex-wrap items-center gap-6 text-sm text-slate-500"
-            >
+            </div>
+            <div className="flex flex-wrap items-center gap-5 text-sm text-slate-500 mt-2">
               {['No credit card required', '14-day free trial', 'Cancel anytime'].map((item) => (
                 <span key={item} className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
                   {item}
                 </span>
               ))}
-            </motion.div>
-          </div>
-
-          {/* Right — Dashboard preview */}
-          <motion.div
-            initial={{ opacity: 0, x: 60, rotateY: -5 }}
-            animate={{ opacity: 1, x: 0, rotateY: 0 }}
-            transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="relative hidden lg:block"
-          >
-            <div className="absolute -inset-8 bg-gradient-to-r from-indigo-500/20 to-cyan-500/20 rounded-3xl blur-3xl" />
-            <div className="relative glass rounded-3xl p-1">
-              <div className="rounded-[22px] bg-dark-800/90 p-6">
-                {/* Browser chrome */}
-                <div className="flex items-center gap-2 mb-5">
-                  <div className="w-3 h-3 rounded-full bg-red-500" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                  <div className="w-3 h-3 rounded-full bg-green-500" />
-                  <div className="ml-3 flex-1 h-8 rounded-lg bg-dark-700/60 flex items-center px-3">
-                    <Search className="w-3.5 h-3.5 text-slate-500 mr-2" />
-                    <span className="text-xs text-slate-500">rankpulse.app/dashboard</span>
-                  </div>
-                </div>
-
-                {/* Stats row */}
-                <div className="grid grid-cols-3 gap-3 mb-5">
-                  {[
-                    { label: 'Keywords', value: '12,847', change: '+12%', up: true },
-                    { label: 'Avg. Position', value: '4.2', change: '+0.8', up: true },
-                    { label: 'Traffic', value: '89.3K', change: '+23%', up: true },
-                  ].map((s) => (
-                    <div key={s.label} className="p-3 rounded-xl bg-dark-700/40">
-                      <div className="text-[10px] uppercase tracking-wider text-slate-500 mb-1">{s.label}</div>
-                      <div className="text-xl font-bold text-white">{s.value}</div>
-                      <div className="text-xs font-semibold text-green-400 mt-0.5">{s.change}</div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Chart */}
-                <div className="h-44 rounded-xl bg-dark-700/30 p-4 relative overflow-hidden">
-                  <div className="absolute inset-0 flex items-end px-4 pb-4">
-                    {[40, 55, 45, 65, 50, 70, 60, 80, 75, 85, 78, 92, 70, 88, 95].map((h, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ height: 0 }}
-                        animate={{ height: `${h}%` }}
-                        transition={{ duration: 0.6, delay: 0.8 + i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-                        className="flex-1 mx-px rounded-t bg-gradient-to-t from-indigo-500 to-cyan-400 opacity-80"
-                      />
-                    ))}
-                  </div>
-                  {/* Line overlay */}
-                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 300 100" preserveAspectRatio="none">
-                    <motion.path
-                      d="M0,80 L20,65 L40,70 L60,50 L80,55 L100,35 L120,40 L140,25 L160,30 L180,20 L200,15 L220,22 L240,18 L260,12 L280,8 L300,5"
-                      fill="none"
-                      stroke="url(#line-gradient)"
-                      strokeWidth="2"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 2, delay: 1, ease: 'easeOut' }}
-                    />
-                    <defs>
-                      <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#6366F1" />
-                        <stop offset="100%" stopColor="#06B6D4" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
-              </div>
             </div>
           </motion.div>
         </div>

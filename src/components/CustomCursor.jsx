@@ -8,12 +8,12 @@ export default function CustomCursor() {
 
   useEffect(() => {
     if (window.matchMedia('(pointer: coarse)').matches) return
+    document.body.style.cursor = 'none'
 
     const move = (e) => {
       setPos({ x: e.clientX, y: e.clientY })
-      setVisible(true)
+      if (!visible) setVisible(true)
     }
-
     const over = (e) => {
       if (e.target.closest('a, button, [data-cursor]')) setHovering(true)
     }
@@ -27,19 +27,20 @@ export default function CustomCursor() {
       window.removeEventListener('mousemove', move)
       window.removeEventListener('mouseover', over)
       window.removeEventListener('mouseout', out)
+      document.body.style.cursor = ''
     }
-  }, [])
+  }, [visible])
 
   if (!visible) return null
 
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 w-5 h-5 rounded-full border border-indigo-400/60 pointer-events-none z-[9999] hidden md:block"
+        className="fixed top-0 left-0 w-5 h-5 rounded-full border-2 border-indigo-400/60 pointer-events-none z-[9999] hidden md:block"
         animate={{
           x: pos.x - 10,
           y: pos.y - 10,
-          scale: hovering ? 2 : 1,
+          scale: hovering ? 2.5 : 1,
         }}
         transition={{ type: 'spring', stiffness: 200, damping: 20, mass: 0.5 }}
       />

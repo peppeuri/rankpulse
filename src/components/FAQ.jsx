@@ -30,27 +30,20 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="relative py-24 md:py-32 overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
-      </div>
-
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 relative">
+      <div className="max-w-3xl mx-auto px-6 sm:px-10 relative">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="mb-16"
         >
           <span className="inline-block text-sm font-bold uppercase tracking-widest text-indigo-400 mb-4">
             FAQ
           </span>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-white mb-4">
-            Frequently Asked Questions
+          <h2 className="text-4xl md:text-5xl font-black tracking-[-0.03em] text-white leading-[1.05] mb-4">
+            Frequently Asked<br />Questions.
           </h2>
-          <p className="text-lg text-slate-400">
-            Got questions? We've got answers.
-          </p>
         </motion.div>
 
         <div className="space-y-3">
@@ -61,13 +54,13 @@ export default function FAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="glass rounded-2xl overflow-hidden"
+              className="rounded-2xl border border-slate-800 overflow-hidden bg-dark-800/40"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 className="w-full flex items-center justify-between p-6 text-left group"
               >
-                <span className="font-semibold text-white group-hover:text-indigo-400 transition-colors pr-4">
+                <span className="font-semibold text-white group-hover:text-indigo-400 transition-colors pr-4 text-lg">
                   {faq.q}
                 </span>
                 <ChevronDown
