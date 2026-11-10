@@ -23,9 +23,7 @@ export default function Navbar() {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'glass py-3' : 'py-5'}`}>
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 group">
-          <span className="text-2xl font-black tracking-tight text-white">
-            Rank<span className="text-indigo-400">Pulse</span>
-          </span>
+          <img src="/rankpulse-logo.jpg" alt="RankPulse" className="h-9 w-auto object-contain" />
         </a>
 
         <div className="hidden md:flex items-center gap-10">

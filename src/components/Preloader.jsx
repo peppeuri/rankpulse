@@ -20,18 +20,7 @@ export default function Preloader({ onComplete }) {
       }}
     >
       <div className="preloader-logo">
-        <svg viewBox="0 0 400 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="0" y="48" fontFamily="system-ui, sans-serif" fontSize="52" fontWeight="900" letterSpacing="-2" fill="white">
-            Rank
-          </text>
-          <text x="130" y="48" fontFamily="system-ui, sans-serif" fontSize="52" fontWeight="900" letterSpacing="-2" fill="#6366F1">
-            Pulse
-          </text>
-          <circle cx="370" cy="30" r="8" fill="#6366F1" opacity="0.8">
-            <animate attributeName="r" values="6;10;6" dur="1.2s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.5;1;0.5" dur="1.2s" repeatCount="indefinite" />
-          </circle>
-        </svg>
+        <img src="/rankpulse-logo.jpg" alt="RankPulse" className="h-14 w-auto object-contain" />
       </div>
       <div className="preloader-bar">
         <div className="preloader-bar-fill" />

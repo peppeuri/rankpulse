@@ -19,9 +19,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pb-16 md:pb-20">
         <div className="grid md:grid-cols-5 gap-12 mb-16">
           <div className="md:col-span-2">
-            <span className="text-2xl font-black tracking-tight text-white block mb-5">
-              Rank<span className="text-indigo-400">Pulse</span>
-            </span>
+            <img src="/rankpulse-logo.jpg" alt="RankPulse" className="h-10 w-auto object-contain block mb-5" />
             <p className="text-slate-400 leading-relaxed max-w-xs text-lg">
               Real-time rank tracking for modern SEO teams.
             </p>
