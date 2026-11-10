@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import logo from '../assets/rankpulse-logo.jpg'
 
 export default function Preloader({ onComplete }) {
   const [hide, setHide] = useState(false)
@@ -20,7 +21,7 @@ export default function Preloader({ onComplete }) {
       }}
     >
       <div className="preloader-logo">
-        <img src="/rankpulse-logo.jpg" alt="RankPulse" className="h-14 w-auto object-contain" />
+        <img src={logo} alt="RankPulse" className="h-14 w-auto object-contain" />
       </div>
       <div className="preloader-bar">
         <div className="preloader-bar-fill" />

@@ -1,3 +1,5 @@
+import logo from '../assets/rankpulse-logo.jpg'
+
 const LINKS = [
   { title: 'Product', items: ['Features', 'Pricing', 'Changelog', 'API Docs'] },
   { title: 'Company', items: ['About', 'Blog', 'Careers', 'Contact'] },
@@ -19,7 +21,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pb-16 md:pb-20">
         <div className="grid md:grid-cols-5 gap-12 mb-16">
           <div className="md:col-span-2">
-            <img src="/rankpulse-logo.jpg" alt="RankPulse" className="h-10 w-auto object-contain block mb-5" />
+            <img src={logo} alt="RankPulse" className="h-10 w-auto object-contain block mb-5" />
             <p className="text-slate-400 leading-relaxed max-w-xs text-lg">
               Real-time rank tracking for modern SEO teams.
             </p>
